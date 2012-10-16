@@ -18,7 +18,7 @@ Usage
 
 Add this module to 'modules' and enable it in bootstrap:
 
-    'lr'        => MODPATH.'lr',
+    'lr'        => MODPATH.'kohana-liberty-reserve',
 
 Copy example controller, modify it, add route similar to that:
 
