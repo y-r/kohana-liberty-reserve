@@ -3,6 +3,8 @@ Kohana Liberty Reserve payment module
 
 This module created for easy use of LR API in Kohana Framework, version 3.2.
 
+This code is just port of standard LR API code from their site to Kohana 3.2.
+
 Supports
 -------
 
