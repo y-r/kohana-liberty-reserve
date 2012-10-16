@@ -11,8 +11,14 @@ class Kohana_LR
     const JSON = 'json';
     const SOAP = 'soap';
     
-    public static function factory(LR_Authentication $auth, $type = LR::JSON)
+    public static function factory(LR_Authentication $pauth = NULL, $type = LR::JSON)
     {
+	$auth = $pauth;
+	if ( ! $auth )
+	{
+	    $auth = LR::auth();
+	}
+
 	switch($type)
         {
            case "xml": 
@@ -33,10 +39,21 @@ class Kohana_LR
 	if($accountId AND $apiName AND $securityWord)
 	    return new LR_Authentication($accountId, $apiName, $securityWord);
 
-	$conf = Kohana::$config->load('lr');
+	try
+	{
+	    $conf = Kohana::$config->load('lr');
+	} catch (Kohana_Exception $e)
+	{
+	    throw new LR_Exception('There is no LR auth config');
+	}
 	$acc = $accountId ? $accountId : $conf['account'];
 	$api = $apiName ? $apiName : $conf['api'];
 	$pass = $securityWord ? $securityWord : $cinf['pass'];
+
+	if ( ! ($acc AND $api AND $pass))
+	{
+	    throw new LR_Exception('LR config keys are not defined');
+	}
 
 	return new LR_Authentication($acc, $api, $pass);
     }

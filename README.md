@@ -10,8 +10,8 @@ Supports
 
 Here are 2 parts of LR API:
 
-* Merchant API to make transactions, view history, lookup transactions with batch, get account name, etc
-* Store API to accept payments using Liberty Reserve
+* Payment API to make transactions, view history, lookup transactions with batch, get account name, etc
+* Store API (SCI) to accept payments using Liberty Reserve
 
 Usage
 -------
@@ -29,10 +29,25 @@ Copy example controller, modify it, add route similar to that:
         'action'     => 'index',
     ));
 
+Status URL on the merchant configuration page should be set to:
+
+    https://your.domain.tld/payment/status
+
 For getting current balance:
 
     $auth = LR::auth($acc, $payment_api, $payment_api_pass);
     $lr = LR::factory($auth);
+    $balance = $lr->balance(LR::USD);
+
+Or:
+
+    $auth = LR::auth(); // will take default values from config
+    $lr = LR::factory($auth);
+    $balance = $lr->balance(LR::USD);
+
+Or even:
+
+    $lr = LR::factory(); // auth values are taken from config. if none defined, LR_Exception is thrown
     $balance = $lr->balance(LR::USD);
 
 Testing
