@@ -48,7 +48,7 @@ class Kohana_LR
 	}
 	$acc = $accountId ? $accountId : $conf['account'];
 	$api = $apiName ? $apiName : $conf['api'];
-	$pass = $securityWord ? $securityWord : $cinf['pass'];
+	$pass = $securityWord ? $securityWord : $conf['api-security-word'];
 
 	if ( ! ($acc AND $api AND $pass))
 	{
