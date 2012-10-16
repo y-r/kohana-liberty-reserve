@@ -29,6 +29,16 @@ Copy example controller, modify it, add route similar to that:
         'action'     => 'index',
     ));
 
+Modify config:
+
+    return array(
+        'account'   => 'U1234567',
+        'api'       => 'payment_api_name',
+        'api-security-word' => 'payment_api_pass',
+        'store' => 'lr_store',
+        'store-security-word' => 'store_pass',
+    );
+
 Status URL on the merchant configuration page should be set to:
 
     https://your.domain.tld/payment/status
