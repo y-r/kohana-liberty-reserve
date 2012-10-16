@@ -34,7 +34,7 @@ class Kohana_LR
               break;
         }     
     }
-    public static function auth($accountId, $apiName, $securityWord)
+    public static function auth($accountId = '', $apiName = '', $securityWord = '')
     {
 	if($accountId AND $apiName AND $securityWord)
 	    return new LR_Authentication($accountId, $apiName, $securityWord);
