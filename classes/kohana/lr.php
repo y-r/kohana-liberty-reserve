@@ -30,6 +30,14 @@ class Kohana_LR
     }
     public static function auth($accountId, $apiName, $securityWord)
     {
-	return new LR_Authentication($accountId, $apiName, $securityWord);
+	if($accountId AND $apiName AND $securityWord)
+	    return new LR_Authentication($accountId, $apiName, $securityWord);
+
+	$conf = Kohana::$config->load('lr');
+	$acc = $accountId ? $accountId : $conf['account'];
+	$api = $apiName ? $apiName : $conf['api'];
+	$pass = $securityWord ? $securityWord : $cinf['pass'];
+
+	return new LR_Authentication($acc, $api, $pass);
     }
 }
