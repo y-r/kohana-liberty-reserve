@@ -27,6 +27,11 @@ Copy example controller, modify it, add route similar to that:
         'action'     => 'index',
     ));
 
+For getting current balance:
+
+    $auth = LR::auth($acc, $payment_api, $payment_api_pass);
+    $lr = LR::factory($auth);
+    $balance = $lr->balance(LR::USD);
 
 Testing
 -------
